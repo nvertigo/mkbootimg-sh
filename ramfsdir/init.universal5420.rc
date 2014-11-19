@@ -361,7 +361,7 @@ on boot
 on fs
 
 # Support Preload install apks
-    exec /sbin/mount.sh
+#    exec /sbin/mount.sh
     mkdir /preload 0771 system system
 
     mount_all /fstab.universal5420
