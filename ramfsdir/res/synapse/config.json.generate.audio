@@ -1,0 +1,87 @@
+#!/sbin/busybox sh
+
+cat << CTAG
+{
+    name:AUDIO,
+    elements:[
+	{ SPane:{ 
+		title:"Mono output",
+		description:" Enables mono output"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SCheckBox:{
+		label:"Mono mixer",
+		default:`cat /sys/class/misc/wolfson_control/switch_hp_mono`,
+                action:"generic /sys/class/misc/wolfson_control/switch_hp_mono"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{ 
+		title:"HeadPhone Equalizer settings",
+		description:" Controls the hardware equalizer."
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SDescription:{
+		description:" You must PAUSE your media player BEFORE making adjustments !"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SSeekBar:{
+		title:"Band 1 gain",
+		description:" Cutoff-frequency: 96 Hz",
+		min:-12, max:12, unit:" dB",
+		default:`cat /sys/class/misc/wolfson_control/eq_hp_gain_1`,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_1"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SSeekBar:{
+		title:"Band 2 gain",
+		description:" Center-frequency: 273 Hz, bandwidth: 551 Hz",
+		min:-12, max:12, unit:" dB",
+		default:`cat /sys/class/misc/wolfson_control/eq_hp_gain_2`,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_2"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SSeekBar:{
+		title:"Band 3 gain",
+		description:" Center-frequency: 784 Hz, bandwidth: 1560 Hz",
+		min:-12, max:12, unit:" dB",
+		default:`cat /sys/class/misc/wolfson_control/eq_hp_gain_3`,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_3"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SSeekBar:{
+		title:"Band 4 gain",
+		description:" Center-frequency: 2206 Hz, bandwidth: 4409 Hz",
+		min:-12, max:12, unit:" dB",
+		default:`cat /sys/class/misc/wolfson_control/eq_hp_gain_4`,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_4"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SSeekBar:{
+		title:"Band 5 gain",
+		description:" Cutoff-frequency: 6340 Hz",
+		min:-12, max:12, unit:" dB",
+		default:`cat /sys/class/misc/wolfson_control/eq_hp_gain_5`,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_5"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+    ]
+}
+CTAG

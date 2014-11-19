@@ -1,0 +1,42 @@
+# By UpInTheAir for SkyHigh STG-S Exynos TW kernels
+
+case $1 in
+ums_mode)
+  P=/res/synapse/SkyHigh/mass_storage
+  if [ ! -z $2 ]; then
+  if [ $2 == Default ]; then
+    echo 0 > $P
+  elif [ $2 == MTP ]; then
+    echo 1 > $P
+	setprop sys.usb.config mtp,adb;
+	setprop persist.sys.usb.config mtp,adb;
+	echo "" > /sys/class/android_usb/android0/f_mass_storage/lun0/file;
+	echo "0" > /sys/class/android_usb/android0/enable;
+	echo "04e8" > /sys/class/android_usb/android0/idVendor;
+	echo "6860" > /sys/class/android_usb/android0/idProduct;
+	echo "mtp,adb" > /sys/class/android_usb/android0/functions;
+	echo "1" > /sys/class/android_usb/android0/enable;
+	setprop sys.usb.state mtp,adb;
+  elif [ $2 == UMS ]; then
+    echo 2 > $P
+	setprop sys.usb.config mass_storage,adb;
+	setprop persist.sys.usb.config mass_storage,adb;
+	echo "/dev/block/vold/179:32" > /sys/class/android_usb/android0/f_mass_storage/lun0/file;
+	echo "0" > /sys/class/android_usb/android0/enable;
+	echo "04e8" > /sys/class/android_usb/android0/idVendor;
+	echo "685e" > /sys/class/android_usb/android0/idProduct;
+	echo "mass_storage,adb" > /sys/class/android_usb/android0/functions;
+	echo "1" > /sys/class/android_usb/android0/enable;
+	start adbd
+	setprop sys.usb.state mass_storage,adb;
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Default
+  elif [ $copy == 1 ]; then
+    echo MTP
+  elif [ $copy == 2 ]; then
+    echo UMS
+  fi
+  ;;
+esac

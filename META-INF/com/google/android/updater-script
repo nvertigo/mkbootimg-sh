@@ -1,0 +1,9 @@
+ui_print("SkyHigh kernel for SM-T800 WIFI CM Port");
+ui_print("");
+ui_print("Extracting Kernel files...");
+ui_print("");
+package_extract_file("boot.img", "/dev/block/platform/dw_mmc.0/by-name/BOOT");
+ui_print("");
+ui_print("***********************************");
+ui_print("* Kernel Installation Completed!  *");
+ui_print("***********************************");

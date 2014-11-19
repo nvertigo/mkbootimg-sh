@@ -1,0 +1,32 @@
+#!/sbin/busybox sh
+
+cat << CTAG
+{
+    name:SCREEN,
+    elements:[
+        { SCheckBox:{
+                description:" LCD Power Reduce for backlight. If you like brighter screen in cost of battery drain, then turn it off.",
+                label:"LCD Power Reduce",
+                action:"generic /sys/class/lcd/panel/power_reduce"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"Sweep2Sleep",
+		description:" Allows you to turn the screen off by swiping UNDER the navigation bar right > left (may cause more battery drain - not tested).",
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SCheckBox:{
+		label:"Enable or Disable Sweep2Sleep",
+		default:`cat /sys/android_touch/sweep2wake`,
+		action:"generic /sys/android_touch/sweep2wake"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+    ]
+}
+CTAG

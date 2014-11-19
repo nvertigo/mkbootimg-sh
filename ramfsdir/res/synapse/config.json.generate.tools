@@ -1,0 +1,36 @@
+#!/sbin/busybox sh
+
+cat << CTAG
+{
+    name:TOOLS,
+    elements:[
+	{ SPane:{
+		title:"SELinux Status",
+		description:" Allows you to change your SELinux (Security-Enhanced Linux) Status from Enforcing (policy is enforced) to Permissive (prints warnings instead of enforcing).",
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SOptionList:{
+		default:`getenforce`,
+		action:"devtools selinux",
+		values:[ Enforcing, Permissive
+		],
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"General Actions",
+		description:" To clear data, select Clear Synapse Data (fixes most common issues)."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SButton:{
+		label:"Clear Synapse Data",
+		action:"devtools cleardata"
+	}},
+    ]
+}
+CTAG

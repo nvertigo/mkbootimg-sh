@@ -1,0 +1,139 @@
+#!/sbin/busybox sh
+
+cat << CTAG
+{
+    name:POWER SUSPEND,
+    elements:[
+	{ SPane:{
+		title:"PowerSuspend",
+		description:" PowerSuspend driver is a replacement for the early_suspend/late_resume driver. Hybrid uses autosleep & display panel hook. Default is Hybrid."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SOptionList:{
+		default:`echo $(/res/synapse/actions/suspend powersuspend)`,
+		action:"suspend powersuspend",
+		values:[Autosleep_hook, Userspace_trigger, DisplayPanel_hook, Hybrid_hook,]
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SSeekBar:{
+		title:"PowerSuspend State",
+		description:" Kernel power management driver when screen is off. Better battery savings if enabled. Note: You can only change this setting if PowerSuspend Mode is set to Userspace_trigger.",
+		min:0,
+		max:1,
+		step:1,
+		default:`cat /sys/kernel/power_suspend/power_suspend_state`,
+		action:"suspend_state /sys/kernel/power_suspend/power_suspend_state"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"Dynamic FSYNC",
+		description:" While screen is on file sync is disabled, when screen is off a file sync is called to flush all outstanding writes and restore file sync operation as normal. Increases speed, but a possible decrease in data integrity, also could create reboot and kernel panic. Default is Disabled."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" * Requires PowerSuspend driver ENABLED *"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SCheckBox:{
+		label:"Enable dynamic fsync",
+		default:`cat /sys/kernel/dyn_fsync/Dyn_fsync_active`,
+		action:"generic /sys/kernel/dyn_fsync/Dyn_fsync_active"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"Dynamic Dirty Page Writeback",
+		description:" Allows to dynamically manage the dirty page writebacks with two different intervals, one when the screen is on and another when the screen is off."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" A higher interval we have better performance and less battery consumption, with a very low risk of data loss. Disabling will set a fixed stock 500 for both screen on & off. Default is Enabled."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" * Requires PowerSuspend driver ENABLED *"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SCheckBox:{
+		label:"Enable or Disable Dynamic Dirty Page Writeback",
+       	 	default:`cat /proc/sys/vm/dynamic_dirty_writeback`,
+		action:"generic /proc/sys/vm/dynamic_dirty_writeback"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SSeekBar:{
+		title:"Dirty Writeback Active",
+		description:" Time interval between wakeups of the pdflush writeback daemons which write old data out to disk whilst SCREEN is ON. Default is 1500.",
+		max:5000,
+		min:500,
+		step:500,
+		default:`cat /proc/sys/vm/dirty_writeback_active_centisecs`,
+		action:"generic /proc/sys/vm/dirty_writeback_active_centisecs",
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SSeekBar:{
+		title:"Dirty Writeback Suspend",
+		description:" Time interval between wakeups of the pdflush writeback daemons which write old data out to disk whilst SCREEN is OFF. Default is 500.",
+		max:1000,
+		min:100,
+		step:100,
+		default:`cat /proc/sys/vm/dirty_writeback_suspend_centisecs`,
+		action:"generic /proc/sys/vm/dirty_writeback_suspend_centisecs",
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"Adaptive VFS Cache Pressure on Suspend / Resume",
+		description:" Value used to control the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects when screen is ON (Default is 100) and screen OFF (fixed 20)."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" Low vfs_cache pressure values save battery while idle, while a low value also causes stutter with longer up times."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" * Requires PowerSuspend driver ENABLED *"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+    	{ SSeekBar:{
+		title:"vfs_cache_pressure",
+		unit:" %",
+		step:1,
+		min:0,
+		max:150,
+		default:`cat /proc/sys/vm/vfs_cache_pressure`,
+		action:"generic /proc/sys/vm/vfs_cache_pressure"
+    	}},
+	{ SDescription:{
+		description:" "
+	}},
+    ]
+}
+CTAG

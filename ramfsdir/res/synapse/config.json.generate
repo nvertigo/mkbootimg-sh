@@ -1,0 +1,30 @@
+#!/sbin/busybox sh
+
+cat << CTAG
+
+{
+    sections: [
+                `. /res/synapse/config.json.generate.myabout`
+		`. /res/synapse/config.json.generate.cpu`
+		`. /res/synapse/config.json.generate.cpuvolt`
+                `. /res/synapse/config.json.generate.cpugov`
+		`. /res/synapse/config.json.generate.memory`
+		`. /res/synapse/config.json.generate.int_mif`
+		`. /res/synapse/config.json.generate.gpu`
+		`. /res/synapse/config.json.generate.powersuspend`
+		`. /res/synapse/config.json.generate.advanced`
+		`. /res/synapse/config.json.generate.tmu`
+		`. /res/synapse/config.json.generate.audio`
+		`. /res/synapse/config.json.generate.battery`
+		`. /res/synapse/config.json.generate.network`
+		`. /res/synapse/config.json.generate.storage`
+                `. /res/synapse/config.json.generate.backup-restore`
+                `. /res/synapse/config.json.generate.reboot`
+                `. /res/synapse/config.json.generate.fs`
+                `. /res/synapse/config.json.generate.logs`
+                `. /res/synapse/config.json.generate.info`
+    ]
+
+}
+CTAG
+
