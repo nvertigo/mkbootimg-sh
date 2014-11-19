@@ -18,7 +18,7 @@ if [ -e $KERNELDIR/arch/arm/boot/zImage ]; then
 	rm zImage
 	rm ../SkyHigh-chagallwifi-cm*.zip
 	zip -r ../SkyHigh-chagallwifi-cm-$curdate.zip .
-	cd $KERNELDIR
+	popd
 else
 	echo "KERNEL DID NOT BUILD! no zImage exist"
 fi;
