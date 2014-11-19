@@ -9,7 +9,7 @@ mkdir -p $PKGDIR
 
 if [ -e $KERNELDIR/arch/arm/boot/zImage ]; then
 	echo "Copy zImage to Package"
-	cp arch/arm/boot/zImage $PKGDIR/zImage
+	cp $KERNELDIR/arch/arm/boot/zImage $PKGDIR/zImage
 
 	echo "Make boot.img"
 	./mkbootfs $RAMFSDIR | gzip > $PKGDIR/ramdisk.gz
