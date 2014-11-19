@@ -4,15 +4,18 @@ KERNELDIR="/usr/local/src/android/kernel/samsung/sh"
 PKGDIR="./pkgdir"
 RAMFSDIR="./ramfsdir"
 
+rm -rf $PKGDIR
+mkdir -p $PKGDIR
+
 if [ -e $KERNELDIR/arch/arm/boot/zImage ]; then
 	echo "Copy zImage to Package"
-	cp arch/arm/boot/zImage $PACKAGEDIR/zImage
+	cp arch/arm/boot/zImage $PKGDIR/zImage
 
 	echo "Make boot.img"
-	./mkbootfs $RAMFSDIR | gzip > $PACKAGEDIR/ramdisk.gz
-	./mkbootimg --kernel $PACKAGEDIR/zImage --ramdisk $PACKAGEDIR/ramdisk.gz --base 0x10000000 --pagesize 2048 --output $PACKAGEDIR/boot.img 
+	./mkbootfs $RAMFSDIR | gzip > $PKGDIR/ramdisk.gz
+	./mkbootimg --kernel $PKGDIR/zImage --ramdisk $PKGDIR/ramdisk.gz --base 0x10000000 --pagesize 2048 --output $PKGDIR/boot.img 
 	export curdate=`date "+%m-%d-%Y"`
-	pushd $PACKAGEDIR
+	pushd $PKGDIR
 	cp -R ../META-INF .
 	rm ramdisk.gz
 	rm zImage
