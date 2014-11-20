@@ -1,4 +1,4 @@
-BB=/sbin/busybox;
+BB=/system/xbin/busybox;
 
 # From Darky's zipalign - Modified to make it actually work.
 # Modded by Dorimanx.

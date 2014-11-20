@@ -1,4 +1,4 @@
-BB=/sbin/busybox;
+BB=/system/xbin/busybox;
 
 # SQLite log location
 LOGS=/sdcard/SkyHigh/Logs/SQLite.txt;

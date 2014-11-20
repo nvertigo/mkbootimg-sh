@@ -1,7 +1,7 @@
 # By UpInTheAir for SkyHigh kernels
 # Thanks to dorimanx & pelya
 
-BB=/sbin/busybox;
+BB=/system/xbin/busybox;
 
 case $1 in
 usb_keyboard)

@@ -1,4 +1,4 @@
-#!/sbin/sh
+#!/system/bin/sh
 
 mkdir /dev
 mkdir /dev/block

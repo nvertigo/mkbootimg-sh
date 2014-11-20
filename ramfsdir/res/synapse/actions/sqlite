@@ -1,4 +1,4 @@
-BB=/sbin/busybox;
+BB=/system/xbin/busybox;
 SQL3=$sbin/sqlite3;
 
 DB=/data/data/com.android.providers.settings/databases;

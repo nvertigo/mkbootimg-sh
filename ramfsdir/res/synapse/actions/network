@@ -1,6 +1,6 @@
 # By UpInTheAir for SkyHigh SM-T700 & T705 Exynos kernels
 
-BB=/sbin/busybox;
+BB=/system/xbin/busybox;
 
 case $1 in
 tcp_security)

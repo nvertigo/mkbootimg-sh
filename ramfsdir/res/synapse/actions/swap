@@ -1,4 +1,4 @@
-#!/sbin/busybox sh
+#!/system/xbin/busybox sh
 
 SWAP=/dev/block/vnswap0;
 ZRAM=$2;

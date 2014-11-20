@@ -1,6 +1,6 @@
 # By UpInTheAir for SkyHigh kernels
 
-BB=/sbin/busybox;
+BB=/system/xbin/busybox;
 P=/sys/class/power_supply/battery/fg_reset_cap;
 $BB chmod 666 $P;
 

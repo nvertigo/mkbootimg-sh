@@ -1,4 +1,4 @@
-#!/sbin/busybox sh
+#!/system/xbin/busybox sh
 
 cat << CTAG
 {
@@ -72,7 +72,7 @@ cat << CTAG
 		}},
 		{ SButton:{
 			label:"Remount RootFS as Writeable",
-			action:"/sbin/busybox mount -t rootfs -o remount,rw rootfs;
+			action:"/system/xbin/busybox mount -t rootfs -o remount,rw rootfs;
 			echo Remounted RootFS as Writable!;"
 		}},
 		{ SDescription:{
@@ -80,7 +80,7 @@ cat << CTAG
 		}},
 		{ SButton:{
 			label:"Remount RootFS as Read-Only",
-			action:"/sbin/busybox mount -t rootfs -o remount,ro rootfs;
+			action:"/system/xbin/busybox mount -t rootfs -o remount,ro rootfs;
 			echo Remounted RootFS as Read-Only!;"
 		}},
 		{ SDescription:{
