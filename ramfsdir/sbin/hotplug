@@ -1,4 +1,4 @@
-#!/sbin/busybox sh
+#!/sbin/sh
 if [ "$SUBSYSTEM" == "block" ];
 then
   ls /data/app/*ntfsmounter* && exit

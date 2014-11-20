@@ -1,4 +1,4 @@
-#!/sbin/busybox sh
+#!/sbin/sh
 
 mkdir /dev
 mkdir /dev/block
