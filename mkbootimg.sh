@@ -14,7 +14,7 @@ if [ -e $KERNELDIR/arch/arm/boot/zImage ]; then
 	echo "Make boot.img"
 	./mkbootfs $RAMFSDIR | gzip > $PKGDIR/ramdisk.gz
 	./mkbootimg --kernel $PKGDIR/zImage --ramdisk $PKGDIR/ramdisk.gz --base 0x10000000 --pagesize 2048 --output $PKGDIR/boot.img 
-	export curdate=`date "+%m-%d-%Y"`
+	export curdate=`date "+%Y%m%d"`
 	pushd $PKGDIR
 	cp -R ../META-INF .
 	rm ramdisk.gz
