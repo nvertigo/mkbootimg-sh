@@ -1,15 +1,14 @@
 #!/system/bin/sh
 
 mount -o remount,rw /
-mount -o remount,rw /system /system
+mount -o remount,rw /system
 
 
 #
 # Synapse
 #
-busybox mount -t rootfs -o remount,rw rootfs
-busybox chmod -R 755 /res/synapse
-busybox ln -fs /res/synapse/uci /sbin/uci
+chmod -R 755 /res/synapse
+ln -fs /res/synapse/uci /sbin/uci
 /sbin/uci
 
 
@@ -23,8 +22,6 @@ fi
 echo  Kernel script is working !!! >> /data/Kerneltest.log
 echo "excecuted on $(date +"%d-%m-%Y %r" )" >> /data/Kerneltest.log
 
-
-mount -o remount,rw /
 
 #
 # Fast Random Generator (frandom) support on boot
@@ -44,6 +41,5 @@ if [ -c "/dev/frandom" ]; then
 fi
 
 
-/sbin/busybox mount -t rootfs -o remount,ro rootfs
-/sbin/busybox mount -o remount,ro /system /system
-/sbin/busybox mount -o remount,rw /data
+mount -o remount,ro /
+mount -o remount,ro /system
